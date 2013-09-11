@@ -18,12 +18,14 @@
 #               server and it's process state.
 #
 # processname: nginx
-# config:      /usr/local/nginx/conf/nginx.conf
-# pidfile:     /usr/local/nginx/logs/nginx.pid
+# config:      /srv/conf/nginx.conf
+# pidfile:     /srv/logs/nginx.pid
 # Provides:    nginx
 #
 # Author:  Jason Giedymin
 #          <jason.giedymin AT gmail.com>.
+#
+# Adapted to use /srv: 2013 Yuce Tekol <yucetekol@gmail.com>
 #
 # Version: 3.0 22-APR-2013 jason.giedymin AT gmail.com
 # Notes: nginx init.d dash script for Ubuntu.
@@ -31,6 +33,8 @@
 # 
 # This script's project home is:
 #   http://github.com/JasonGiedymin/nginx-init-ubuntu
+# Modified script's home:
+#   http://github.com/yuce/nginx-init-ubuntu
 #
 #------------------------------------------------------------------------------
 #                               MIT X11 License
@@ -66,13 +70,13 @@
 #------------------------------------------------------------------------------
 #                               Consts
 #------------------------------------------------------------------------------
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/local/nginx/sbin/nginx
+PATH=/srv/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/srv/sbin/nginx
 
 PS="nginx"
 PIDNAME="nginx"                     #lets you do $PS-slave
 PIDFILE=$PIDNAME.pid                #pid file
-PIDSPATH=/usr/local/nginx/logs      #default pid location, you should change it
+PIDSPATH=/srv/logs      #default pid location, you should change it
 
 DESCRIPTION="Nginx Server..."
 
@@ -84,7 +88,7 @@ TRUE=1                              #boolean
 FALSE=0                             #boolean
 
 lockfile=/var/lock/subsys/nginx
-NGINX_CONF_FILE="/usr/local/nginx/conf/nginx.conf"
+NGINX_CONF_FILE="/srv/conf/nginx.conf"
 
 #------------------------------------------------------------------------------
 #                               Simple Tests
